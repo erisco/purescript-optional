@@ -1,5 +1,6 @@
 {
   "private": true,
+  "license": "BSD-3-Clause",
   "scripts": {
     "clean": "rimraf output && rimraf .pulp-cache",
     "build": "pulp build -- --censor-lib --strict"
