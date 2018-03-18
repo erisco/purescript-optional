@@ -1,11 +1,19 @@
 {
   "name": "purescript-optional",
+  "authors": [
+    "Eric Brisco <eric.brisco@gmail.com>"
+  ],
+  "license": "BSD-3-Clause",
   "ignore": [
     "**/.*",
     "node_modules",
     "bower_components",
     "output"
   ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/erisco/purescript-optional.git"
+  },
   "dependencies": {
     "purescript-prelude": "^3.1.1",
     "purescript-console": "^3.0.0",

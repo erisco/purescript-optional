@@ -1,9 +1,10 @@
 {
+  "private": true,
   "name": "purescript-optional",
   "version": "0.1.0",
   "description": "Optional is a newtype on the uncurried Church encoding of Maybe.",
   "keywords": ["ffi", "foreign", "optional", "null", "undefined", "purescript"],
-  "author": "Eric Brisco",
+  "author": "Eric Brisco <eric.brisco@gmail.com>",
   "license": "BSD-3-Clause",
   "scripts": {
     "clean": "rimraf output && rimraf .pulp-cache",
