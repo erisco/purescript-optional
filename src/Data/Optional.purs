@@ -10,24 +10,25 @@ module Data.Optional
 where
 
 import Control.Alt (class Alt, map)
-import Control.Alternative (class Alternative, pure)
+import Control.Alternative (class Alternative, class Applicative, class Apply, pure)
 import Control.Apply (lift2)
 import Control.Extend (class Extend)
-import Control.MonadZero (class MonadZero)
+import Control.MonadZero (class Bind, class Monad, class MonadZero)
 import Control.Plus (class Plus)
+import Data.Bounded (class Bounded, bottom, top)
 import Data.Enum (class Enum, pred, succ)
-import Data.Eq (class Eq1)
+import Data.Eq (class Eq, class Eq1, eq, (==))
 import Data.Foldable (class Foldable)
-import Data.Foreign.Class (class Encode, class Decode)
-import Data.Foreign.Generic as Fgn
 import Data.Function.Uncurried (Fn2, mkFn2, runFn2)
+import Data.Functor (class Functor)
 import Data.Functor.Invariant (class Invariant)
 import Data.Generic.Rep (class Generic, Argument(..), Constructor(..), NoArguments(..), Sum(..))
 import Data.Maybe (Maybe(..), maybe)
-import Data.Monoid (class Monoid, append, mempty, (<>))
-import Data.Ord (class Ord1, Ordering(..), compare)
+import Data.Monoid (class Monoid, mempty)
+import Data.Ord (class Ord, class Ord1, Ordering(..), compare)
+import Data.Semigroup (class Semigroup, append, (<>))
+import Data.Show (class Show, show)
 import Data.Traversable (class Traversable)
-import Prelude (class Applicative, class Apply, class Bind, class Bounded, class Eq, class Functor, class Monad, class Ord, class Semigroup, class Show, bottom, eq, show, top, (==))
 
 -- | `Optional` is a newtype on the uncurried Church encoding of `Maybe`.
 newtype Optional a = Optional (forall r. Fn2 r (a -> r) r)
@@ -144,14 +145,6 @@ instance genericOptional ::
     runFn2 o
     (Inl (Constructor NoArguments))
     (\x -> Inr (Constructor (Argument x)))
---
-
-instance encodeOptional :: Encode a => Encode (Optional a) where
-  encode = Fgn.genericEncode Fgn.defaultOptions
---
-
-instance decodeOptional :: Decode a => Decode (Optional a) where
-  decode = Fgn.genericDecode Fgn.defaultOptions
 --
 
 instance foldableOptional :: Foldable Optional where
